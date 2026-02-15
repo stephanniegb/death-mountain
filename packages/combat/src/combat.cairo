@@ -136,14 +136,15 @@ pub impl ImplCombat of ICombat {
         let total_attack = elemental_adjusted_damage + strength_bonus + weapon_special_bonus;
         let total_crit_attack = total_attack + critical_hit_bonus;
 
-        let mut total_damage: u16 = minimum_damage.into();
-        let mut total_crit_damage: u16 = 0;
+        let minimum_damage_u16: u16 = minimum_damage.into();
+        let mut total_damage: u16 = minimum_damage_u16;
+        let mut total_crit_damage: u16 = minimum_damage_u16;
 
-        if total_attack > base_armor + minimum_damage.into() {
+        if total_attack > base_armor + minimum_damage_u16 {
             total_damage = total_attack - base_armor;
         }
 
-        if total_crit_attack > base_armor + minimum_damage.into() {
+        if total_crit_attack > base_armor + minimum_damage_u16 {
             total_crit_damage = total_crit_attack - base_armor;
         }
 
